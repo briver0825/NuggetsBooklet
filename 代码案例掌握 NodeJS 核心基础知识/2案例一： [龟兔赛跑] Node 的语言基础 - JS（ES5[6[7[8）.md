@@ -1,26 +1,29 @@
-### 本资源由 itjc8.com 收集整理
-#  [命令行动画龟兔赛跑] Node 的语言基础 - JS（ES5/6/7/8）
+# 2案例一： \[龟兔赛跑] Node 的语言基础 - JS（ES5\[6\[7\[8）
 
-![image.png | left | 826x102](https://user-gold-cdn.xitu.io/2018/10/13/1666e1b31fda4c77?w=2508&h=310&f=png&s=98394 "")
+#### 本资源由 itjc8.com 收集整理
+
+## \[命令行动画龟兔赛跑] Node 的语言基础 - JS（ES5/6/7/8）
+
+![image.png | left | 826x102](https://user-gold-cdn.xitu.io/2018/10/13/1666e1b31fda4c77?w=2508\&h=310\&f=png\&s=98394)
 
 ```!
 本节目标：【实现一个龟兔赛跑小动画】 - 没有金刚钻，不揽瓷器活，必要的 JS 知识是学习 Node 的第一板斧。
 ```
 
-## 名词概念解释
+### 名词概念解释
 
 * JS 对 JavaScript 的简称，实际意义与 JavaScript 相同
-* JavasScript 通用叫法，代指实现了 <span data-type="color" style="color:rgba(0, 0, 0, 0.8)"><span data-type="background" style="background-color:rgb(252, 252, 252)">ECMAScript 标准的任何语言版本</span></span>
+* JavasScript 通用叫法，代指实现了 ECMAScript 标准的任何语言版本
 * ES 对 ECMAScript 的简称，实际意义与 ECMAScript 相同
-* ECMAScript  [欧洲计算机制造商协会](http://www.ecma-international.org/) 对 Javascript 语言制定的工业标准，随着时间推移版本不断更新，如 ES3/4/5
+* ECMAScript  [欧洲计算机制造商协会](http://www.ecma-international.org/) 对 Javascript 语言制定的工业标准，随着时间推移版本不断更新，如 ES3/4/5
 * ES2/3/4/5 是语言标准的版本，ES2015/ES2016 是发布标准的年份称谓，如 ES2015/ES6 意义等同
 * ES.Next 代指下一个要推出的语言标准，它永远指向下一个，是动态的
 
 1995 年网景浏览器发布 LiveScript，后来改名 JavaScript，再后来提交 JavaScript 到 ECMA 进行标准化，也就有了官方学名 ECMAScript，只是 ECMAScript 这个名字不怎么讨人喜爱，大家仍然习惯叫 JavaScript。
 
-到如今已过去 20 多年了，按道理说，根据 JavaScript 语言进化的速度，到现在应该有至少十几个 ES 版本出来，然后并没有，原因是标准协会负责定标准，但实际执行标准实现（落地）的是浏览器厂商，每个厂商都夹带私货，对标准也不是全部认同，标准协会自己干活也不怎么接地气，甚至在 1999 年 ES3 ~ 2009 年 ES5 这个黄金十年是停滞不前的，并没有多少群众呼声大的特性加入标准，人生有多少个十年，也不能说它没干活，1999 年还是推出了 ES4，但太过激进这个版本就报废了，没有在厂商落地，直到 2009 年语言标准才有步入正轨，这个停滞的 10 年中标准协会以及厂商的撕逼内幕非常精彩，大家有兴趣可以去扒一扒。
+到如今已过去 20 多年了，按道理说，根据 JavaScript 语言进化的速度，到现在应该有至少十几个 ES 版本出来，然后并没有，原因是标准协会负责定标准，但实际执行标准实现（落地）的是浏览器厂商，每个厂商都夹带私货，对标准也不是全部认同，标准协会自己干活也不怎么接地气，甚至在 1999 年 ES3 \~ 2009 年 ES5 这个黄金十年是停滞不前的，并没有多少群众呼声大的特性加入标准，人生有多少个十年，也不能说它没干活，1999 年还是推出了 ES4，但太过激进这个版本就报废了，没有在厂商落地，直到 2009 年语言标准才有步入正轨，这个停滞的 10 年中标准协会以及厂商的撕逼内幕非常精彩，大家有兴趣可以去扒一扒。
 
-## Webpack 中用到的部分语法特性
+### Webpack 中用到的部分语法特性
 
 在 Node 里面自 v6.14.4 之后，[就支持了 99% 以上的 ES6 语法特性](https://node.green/)，在 v10.x 之后，也支持了几乎全部的 ES7/ES2016、ES8/ES2017、ES9/ES2018 的可用语法特性，我们主要关注 ES6/ES2015 中新增的语法特性和部分 ES7/8/9 的语法特性，在小册子我们会使用 Node v10.11.x 的版本来运行一些示例代码。
 
@@ -29,120 +32,34 @@
 * [Mozilla 文档](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/New_in_JavaScript/ECMAScript_6_support_in_Mozilla)
 * [阮老师的 ES6 入门](http://es6.ruanyifeng.com/#docs/intro)
 
-
-<div class="bi-table">
-  <table>
-    <colgroup>
-      <col width="157.98858642578125px" />
-      <col width="672px" />
-    </colgroup>
-    <tbody>
-      <tr height="34px">
-        <td rowspan="1" colSpan="1">
-          <div data-type="p">语法特性</div>
-        </td>
-        <td rowspan="1" colSpan="1">
-          <div data-type="p">示例</div>
-        </td>
-      </tr>
-      <tr height="34px">
-        <td rowspan="1" colSpan="1">
-          <div data-type="p">变量声明</div>
-          <div data-type="p"></div>
-          <div data-type="p">{let 具有块级域，const 通常声明不可变变量}</div>
-        </td>
-        <td rowspan="1" colSpan="1"><pre data-syntax="javascript"><code class="language-javascript">let debugId = 1000
-const Compiler = require(&#x27;./Compiler&#x27;)
-</code></pre></td>
-      </tr>
-      <tr height="34px">
-        <td rowspan="1" colSpan="1">
-          <div data-type="p">模板字符串</div>
-          <div data-type="p"></div>
-          <div data-type="p">{字符串的简洁用法，可内嵌函数与变量}</div>
-        </td>
-        <td rowspan="1" colSpan="1"><pre data-syntax="javascript"><code class="language-javascript">let message = `* ${m.identifier()}`
+<table data-header-hidden><thead><tr><th></th><th></th></tr></thead><tbody><tr><td>语法特性</td><td>示例</td></tr><tr><td>变量声明{let 具有块级域，const 通常声明不可变变量}</td><td><pre class="language-javascript"><code class="lang-javascript">let debugId = 1000
+const Compiler = require('./Compiler')
+</code></pre></td></tr><tr><td>模板字符串{字符串的简洁用法，可内嵌函数与变量}</td><td><pre class="language-javascript"><code class="lang-javascript">let message = `* ${m.identifier()}`
 const ma = `${a.message}`
-</code></pre></td>
-      </tr>
-      <tr height="34px">
-        <td rowspan="1" colSpan="1">
-          <div data-type="p">箭头函数</div>
-          <div data-type="p"></div>
-          <div data-type="p">{省略 function 的函数定义}</div>
-        </td>
-        <td rowspan="1" colSpan="1"><pre data-syntax="javascript"><code class="language-javascript">const exportPlugins = (obj, mappings) =&gt; {}
-</code></pre></td>
-      </tr>
-      <tr height="34px">
-        <td rowspan="1" colSpan="1">
-          <div data-type="p">解构赋值</div>
-          <div data-type="p"></div>
-          <div data-type="p">{从目标数组或对象提取特定值}</div>
-        </td>
-        <td rowspan="1" colSpan="1"><pre data-syntax="javascript"><code class="language-javascript">// 从 tapable 模块对象中提取 SyncHook 函数
+</code></pre></td></tr><tr><td>箭头函数{省略 function 的函数定义}</td><td><pre class="language-javascript"><code class="lang-javascript">const exportPlugins = (obj, mappings) => {}
+</code></pre></td></tr><tr><td>解构赋值{从目标数组或对象提取特定值}</td><td><pre class="language-javascript"><code class="lang-javascript">// 从 tapable 模块对象中提取 SyncHook 函数
 const {
   SyncHook,
-} = require(&#x27;tapable&#x27;)
-</code></pre></td>
-      </tr>
-      <tr height="34px">
-        <td rowspan="1" colSpan="1">
-          <div data-type="p">rest 参数与扩展运算符</div>
-          <div data-type="p"></div>
-          <div data-type="p">{参数到数组与数组铺开为参数，可以看做互逆}</div>
-        </td>
-        <td rowspan="1" colSpan="1"><pre data-syntax="javascript"><code class="language-javascript">// 多余参数转成一个数组 args[]
+} = require('tapable')
+</code></pre></td></tr><tr><td>rest 参数与扩展运算符{参数到数组与数组铺开为参数，可以看做互逆}</td><td><pre class="language-javascript"><code class="lang-javascript">// 多余参数转成一个数组 args[]
 function(name, ...args) {
   // 把数组以 ... 扩展为参数
   this.hooks[name.replace(/**/)].call(...args)
 }
-</code></pre></td>
-      </tr>
-      <tr height="34px">
-        <td rowspan="1" colSpan="1">
-          <div data-type="p">Symbol 对象</div>
-          <div data-type="p"></div>
-          <div data-type="p">{可生成一个独一无二的值，永不重复}</div>
-        </td>
-        <td rowspan="1" colSpan="1"><pre data-syntax="javascript"><code class="language-javascript">// 原始数据对象
+</code></pre></td></tr><tr><td>Symbol 对象{可生成一个独一无二的值，永不重复}</td><td><pre class="language-javascript"><code class="lang-javascript">// 原始数据对象
 // 接收参数（可选）来生成一个独一无二的值
-const MAYBEEND = Symbol(&#x27;maybeEnd&#x27;)
-const WRITING = Symbol(&#x27;writing&#x27;)
-</code></pre></td>
-      </tr>
-      <tr height="34px">
-        <td rowspan="1" colSpan="1">
-          <div data-type="p">Set 对象</div>
-          <div data-type="p"></div>
-          <div data-type="p">{一种数据结构，可存任意数据类型，且保证值唯一}</div>
-        </td>
-        <td rowspan="1" colSpan="1"><pre data-syntax="javascript"><code class="language-javascript">// 可接收一个可迭代对象作为参数，构造一个新的 Set 对象
+const MAYBEEND = Symbol('maybeEnd')
+const WRITING = Symbol('writing')
+</code></pre></td></tr><tr><td>Set 对象{一种数据结构，可存任意数据类型，且保证值唯一}</td><td><pre class="language-javascript"><code class="lang-javascript">// 可接收一个可迭代对象作为参数，构造一个新的 Set 对象
 const queue = new Set(this.groupsIterable)
 // 可接收空参数生成一个 Set 对象
 const chunksProcessed = new Set()
-</code></pre></td>
-      </tr>
-      <tr height="34px">
-        <td rowspan="1" colSpan="1">
-          <div data-type="p">Map 对象</div>
-          <div data-type="p"></div>
-          <div data-type="p">{哈希结构的键值对集合}</div>
-        </td>
-        <td rowspan="1" colSpan="1"><pre data-syntax="javascript"><code class="language-javascript">// 创建一个空集合，交给 fileTimestamps
+</code></pre></td></tr><tr><td>Map 对象{哈希结构的键值对集合}</td><td><pre class="language-javascript"><code class="lang-javascript">// 创建一个空集合，交给 fileTimestamps
 const fileTs = (compiler.fileTimestamps = new Map())
-</code></pre></td>
-      </tr>
-      <tr height="34px">
-        <td rowspan="1" colSpan="1">
-          <div data-type="p">Promise 对象</div>
-          <div data-type="p"></div>
-          <div data-type="p">{管理异步状态的对象，在某个时刻来回调返回异步执行结果}</div>
-        </td>
-        <td rowspan="1" colSpan="1"><pre data-syntax="javascript"><code class="language-javascript">// fs 模块读出文件内容并转成 JSON
+</code></pre></td></tr><tr><td>Promise 对象{管理异步状态的对象，在某个时刻来回调返回异步执行结果}</td><td><pre class="language-javascript"><code class="lang-javascript">// fs 模块读出文件内容并转成 JSON
 // 把整个异步过程包装成一个 Promise 返回
-return new Promise((resolve, reject) =&gt; {
-  require(&#x27;fs&#x27;).readFile(filename, (err, content) =&gt; {
+return new Promise((resolve, reject) => {
+  require('fs').readFile(filename, (err, content) => {
     try {
       var update = JSON.parse(content)
     } catch (e) {
@@ -151,30 +68,17 @@ return new Promise((resolve, reject) =&gt; {
     resolve(update)
   })
 })
-</code></pre></td>
-      </tr>
-      <tr height="34px">
-        <td rowspan="1" colSpan="1">
-          <div data-type="p">for ... of 循环</div>
-          <div data-type="p"></div>
-          <div data-type="p">{遍历循环所有成员}</div>
-        </td>
-        <td rowspan="1" colSpan="1"><pre data-syntax="javascript"><code class="language-javascript">// 遍历拿到所有该模块的依赖项
+</code></pre></td></tr><tr><td>for ... of 循环{遍历循环所有成员}</td><td><pre class="language-javascript"><code class="lang-javascript">// 遍历拿到所有该模块的依赖项
 for (const dependency of module.dependencies) {}
-</code></pre></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
+</code></pre></td></tr></tbody></table>
 
 除了上面这些，还有 Class/Async Function/Generator Function 等等许许多多的特性，不再一一列举。
 
-### 编程练习 - 实现一个命令行龟兔赛跑动画
+#### 编程练习 - 实现一个命令行龟兔赛跑动画
 
 我们来基于上面的知识结果，可以借助 chalk-animation 模块，来实现一个在命令行的进度条动画 - 龟兔赛跑，先看下效果：
 
-![QQ20181007-185354.gif | center | 807x55](https://user-gold-cdn.xitu.io/2018/10/13/1666e1b3201f96d8?w=420&h=29&f=gif&s=627833 "")
+![QQ20181007-185354.gif | center | 807x55](https://user-gold-cdn.xitu.io/2018/10/13/1666e1b3201f96d8?w=420\&h=29\&f=gif\&s=627833)
 
 要实现这样一个效果，思路是很简单的，就是不断的去刷新当前的终端日志就可以了，所以本质上是把字符串按照我们计算的规则，每隔比如 1 秒钟，就刷新一下进度，至于龟兔，控制好它俩在的几个状态就行。
 
@@ -203,7 +107,6 @@ for (const dependency of module.dependencies) {}
 ```
 
 那我们首先可以用很简陋的代码来实现这个逻辑，让兔子速度是乌龟的 3 倍，等待 2 秒后，它俩开始离开起点，每隔 150 毫秒，就计算下它俩走多远了，也就是速度 x 轮询的次数，比如 450 毫秒后，乌龟走过去了三米，兔子走过去了九米距离，那么第一次写的代码可能就是这样的比较挫的代码：
-
 
 ```javascript
 // 声明 2 个比赛队员
@@ -407,8 +310,9 @@ const proxy = new Proxy(Race, {
 
 proxy()
 ```
+
 除了 class，还增加了一些 rest 参数，解构赋值等，但依然实现过程比较猥琐且过度设计，大家能 Get 到 `语法特性能带来一些编程实现方式的差异性` 这一点，这一章节的目的就达到了。
 
-## 思考
+### 思考
 
 基于上面的代码，给大家布置一个作业，如果要实现龟兔赛跑，但可以让兔子停留的位置随机应该怎么实现？
